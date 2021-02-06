@@ -1,6 +1,7 @@
 ﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace ConsoleUI
 {
@@ -10,13 +11,31 @@ namespace ConsoleUI
         //Open Closed Principle
         static void Main(string[] args)
         {
+            //Data Transformatin Object - DTO
+
+             ProductTest();
+            //IoC 
+            //CategoryTest();
+
+        }
+
+        private static void CategoryTest()
+        {
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            foreach (var category in categoryManager.GetAll())
+            {
+                Console.WriteLine(category.CategoryName);
+            }
+        }
+
+        private static void ProductTest()
+        {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetByUnitPrice(40,100))
+            foreach (var product in productManager.GetProductDetailDtos())
             {
-                Console.WriteLine(product.ProductName);
+                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
             }
-
         }
     }
 }
