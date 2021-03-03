@@ -15,7 +15,7 @@ using System.Text;
 
 namespace Business.DependencyResolvers.Autofac
 {
-    public class AutofacBusinessModule:Module
+    public class AutofacBusinessModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -30,8 +30,6 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
-
-            //builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
