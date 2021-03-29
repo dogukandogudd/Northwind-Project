@@ -8,7 +8,7 @@ using System.Text;
 namespace DataAccess.Concrete.EntityFramework
 {
     //Context : DB TABLOLARI İLE PROJE CLASSLARINI BĞALAMAK
-    public class NorthwindContext:DbContext
+    public class NorthwindContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

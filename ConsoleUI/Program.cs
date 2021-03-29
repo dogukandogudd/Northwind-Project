@@ -13,7 +13,7 @@ namespace ConsoleUI
         {
             //Data Transformatin Object - DTO
 
-             ProductTest();
+            ProductTest();
             //IoC 
             //CategoryTest();
 
@@ -30,10 +30,10 @@ namespace ConsoleUI
 
         private static void ProductTest()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal(),new CategoryManager(new EfCategoryDal()));
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
 
             var result = productManager.GetProductDetailDtos();
-            if (result.Success==true)
+            if (result.Success == true)
             {
                 foreach (var product in result.Data)
                 {
@@ -45,7 +45,7 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
 
-            
+
         }
     }
 }
