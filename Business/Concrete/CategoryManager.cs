@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,6 +18,22 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        public IResult Add(Category category)
+        {
+            if (category.CategoryName.Length < 3)
+            {
+                return new ErrorResult(Messages.NameInvalid);
+            }
+            _categoryDal.Add(category);
+            return new SuccessResult();
+        }
+
+        public IResult Delete(Category category)
+        {
+            _categoryDal.Delete(category);
+            return new SuccessResult();
+        }
+
         public IDataResult<List<Category>> GetAll()
         {
             //İş kodları
@@ -27,6 +44,12 @@ namespace Business.Concrete
         public IDataResult<Category> GetById(int categoryId)
         {
             return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == categoryId));
+        }
+
+        public IResult Update(Category category)
+        {
+            _categoryDal.Update(category);
+            return new SuccessResult();
         }
     }
 }
